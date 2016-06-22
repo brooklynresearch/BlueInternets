@@ -1,3 +1,11 @@
+//com 9  - ESP
+//com 8  - ble
+//-------------
+//com 6  - ESP 
+//com 10 - ble
+//----------------
+//motors pin = 16
+//for each board need to change the filter in osc messages and ip-address in Max
 /*---------------------------------------------------------------------------------------------
 
   Open Sound Control (OSC) library for the ESP8266
@@ -14,22 +22,16 @@
 #include <OSCBundle.h>
 #include <OSCData.h>
 #include <Wire.h>
-//#include <Adafruit_PWMServoDriver.h>
 #include <SparkFunBLEMate2.h>
-#include <SoftwareSerial.h>
 
-//#define DEBUG
-//#ifdef DEBUG
-//#endif
-
-#define RIBCAGE 16
+#define RIBCAGE 15
 #define SPINE 15
 #define MIDBACK 15
 #define LOWBACK 15
-#define WRISTL 15
-#define WRISTR 15
-#define ANKLEL 15
-#define ANKLER 15
+#define WRISTL 16
+#define WRISTR 16
+#define ANKLEL 16
+#define ANKLER 16
 
 SoftwareSerial DebugSerial(12,13);
 BLEMate2 BTModu(&Serial);
@@ -54,8 +56,6 @@ void printDebug(String message, OSCMessage &msg) {
     Serial.println("");
 }
 
-
-
 //*** Functions for SmartBasic
 void selectPC(){
   Serial.flush();
@@ -68,8 +68,8 @@ void selectBLE(){
 void setup() {
   //Serial.begin(460800);
   pinMode(SmartBasicPin, OUTPUT);
-  pinMode(RIBCAGE, OUTPUT);  //MORE PINS!!!
-  analogWrite(RIBCAGE, 0);
+  pinMode(16, OUTPUT);  //MORE PINS!!!
+  analogWrite(16, 0);
   Serial.begin(9600);
   while (!Serial) { ; // wait for serial port to connect. Needed for native USB port only
   }      
